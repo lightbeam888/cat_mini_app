@@ -84,52 +84,52 @@ const AppWrapper = ({ Component, pageProps }: any) => {
     const { userAgent } = window.navigator;
     setIsMobile(userAgent.includes("Mobi"));
 
-    const getTasks = async () => {
-      const { data } = await instance.get(`/tasks/${userFromQuery || "404"}`);
-      dispatch(setTasks(data));
-    };
-    const funcRate = async () => {
-      const { data } = await instance.get("/rate");
-      dispatch(setRate(data));
-    };
+    //   const getTasks = async () => {
+    //     const { data } = await instance.get(`/tasks/${userFromQuery || "404"}`);
+    //     dispatch(setTasks(data));
+    //   };
+    //   const funcRate = async () => {
+    //     const { data } = await instance.get("/rate");
+    //     dispatch(setRate(data));
+    //   };
 
-    const funcUsers = async () => {
-      const { data } = await instance.get("/users");
-      dispatch(setUsers(data));
-    };
-    const fetchData = async () => {
-      console.log("userFromQuery", userFromQuery);
-      if (userFromQuery) {
-        const { data } = await instance.get("/users");
-        const item = data.find((item: any) => item.tg_id == userFromQuery);
-        dispatch(setUser(item.tg_id));
-        dispatch(setCurrentUser(item));
-      }
-    };
-    const fetch = async () => {
-      if (userFromQuery) {
-        const response = await instance.post(`/tgid`, {
-          user: userFromQuery,
-        });
-        dispatch(setCurrentUser(response.data));
-      }
-    };
-    const funcThings = async () => {
-      const { data } = await instance.get("/things");
-      dispatch(setThings(data));
-    };
-    const funcBuilds = async () => {
-      const { data } = await instance.get("/builds");
-      dispatch(setBuilds(data));
-    };
+    //   const funcUsers = async () => {
+    //     const { data } = await instance.get("/users");
+    //     dispatch(setUsers(data));
+    //   };
+    //   const fetchData = async () => {
+    //     console.log("userFromQuery", userFromQuery);
+    //     if (userFromQuery) {
+    //       const { data } = await instance.get("/users");
+    //       const item = data.find((item: any) => item.tg_id == userFromQuery);
+    //       dispatch(setUser(item.tg_id));
+    //       dispatch(setCurrentUser(item));
+    //     }
+    //   };
+    //   const fetch = async () => {
+    //     if (userFromQuery) {
+    //       const response = await instance.post(`/tgid`, {
+    //         user: userFromQuery,
+    //       });
+    //       dispatch(setCurrentUser(response.data));
+    //     }
+    //   };
+    //   const funcThings = async () => {
+    //     const { data } = await instance.get("/things");
+    //     dispatch(setThings(data));
+    //   };
+    //   const funcBuilds = async () => {
+    //     const { data } = await instance.get("/builds");
+    //     dispatch(setBuilds(data));
+    //   };
 
-    funcUsers();
-    funcThings();
-    funcBuilds();
-    getTasks();
-    fetchData();
-    fetch();
-    funcRate();
+    //   funcUsers();
+    //   funcThings();
+    //   funcBuilds();
+    //   getTasks();
+    //   fetchData();
+    //   fetch();
+    //   funcRate();
   }, []);
 
   useEffect(() => {
@@ -140,7 +140,7 @@ const AppWrapper = ({ Component, pageProps }: any) => {
 
   return (
     <>
-      {!isLoadedTask ? (
+      {/* {!isLoadedTask ? (
         <div className="flex justify-center items-center h-screen">
           <CircularProgress />
         </div>
@@ -158,7 +158,15 @@ const AppWrapper = ({ Component, pageProps }: any) => {
           <img className="max-w-[186px]" src="/images/crying.svg" />
           <span>Not available in PC.</span>
         </div>
-      )}
+      )} */}
+      <>
+        {" "}
+        <Script
+          src="https://telegram.org/js/telegram-web-app.js"
+          strategy="beforeInteractive"
+        />
+        <Component {...pageProps} />
+      </>
     </>
   );
 };
